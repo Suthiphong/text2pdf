@@ -324,6 +324,29 @@ void WriteRest(){
 }
 
 
+	  /*pageWidth = 842;
+	  pageHeight = 1190;*/
+
+void ShowTable() {
+  printf("   \t\t\n");
+  printf("  TABLE (Point)\t\t\n");
+  printf("  ================ \t\t\n");
+  printf("  Letter \t612 x 792\n");
+  printf("  LetterSmall \t612 x 792\n");
+  printf("  Tabloid \t792 x 1224\n");
+  printf("  Ledger \t1224 x 792\n");
+  printf("  Legal \t612 x 1008\n");
+  printf("  Statement \t396 x 612\n");
+  printf("  Executive \t540 x 720\n");
+  printf("  A0 \t2384 x 3371\n");
+  printf("  A1 \t1685 x 2384\n");
+  printf("  A2 \t1190 x 1684\n");
+  printf("  A3 \t842 x 1190\n");
+  printf("  A4 \t595 x 842\n");
+  printf("  \n\n");
+
+}
+
 void ShowHelp(){
 
   printf("\n%s [options] [filename]\n\n", progname);
@@ -332,6 +355,7 @@ void ShowHelp(){
   printf("  to standard output.\n");
   printf("\n  There are various options as follows:\n\n");
   printf("  -h\t\tshow this message\n");
+  printf("  -?\t\tshow Table size of paper\n");
   printf("  -f<font>\tuse PostScript <font> (must be in standard 14, default: Courier)\n");
   printf("  -I\t\tuse ISOLatin1Encoding\n");
   printf("  -s<size>\tuse font at given pointsize (default %d)\n", pointSize);
@@ -340,12 +364,15 @@ void ShowHelp(){
   printf("  -c<chars>\tmaximum characters per line (default 80)\n");
   printf("  -t<spaces>\tspaces per tab character (default 8)\n");
   printf("  -F\t\tignore formfeed characters (^L)\n");
-  printf("  -A4\t\tuse A4 paper (default Letter)\n");
-  printf("  -A3\t\tuse A3 paper (default Letter)\n");
+  printf("  -A4\t\tuse A4 paper (default Letter) width = 842 height = 1190 point\n");
+  printf("  -A3\t\tuse A3 paper (default Letter) width = 595 height = 842 point\n");
   printf("  -x<width>\tindependent paper width in points\n");
   printf("  -y<height>\tindependent paper height in points\n");
   printf("  -2\t\tformat in 2 columns\n");
   printf("  -L\t\tlandscape mode\n");
+  //printf("  -u\t\tchange units um = mm, uc = cm, ui = inch\n");
+  //
+
   printf("\n  Note that where one variable is implied by two options, the second option\n  takes precedence for that variable. (e.g. -A4 -y500)\n");
   printf("  In landscape mode, page width and height are simply swapped over before\n  formatting, no matter how or when they were defined.\n");
   printf("\n%s (c) Phil Smith, 1996\n", appname);
@@ -371,6 +398,9 @@ int main(int argc, char **argv){
       switch (*++argv[i]) {
       case 'h':
 	ShowHelp();
+	exit(0);
+	  case '?':
+	ShowTable();
 	exit(0);
       case 'f':
 	strcpy(font, "/");
